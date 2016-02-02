@@ -1,1 +1,13 @@
-<h1>Hello world</h1>
+<% if logged_in? %>
+  <%= current_user["name"] %>
+  <%= link_to 'Log Out', logout_path %>
+<% else %>
+  <%= link_to 'Log In with Github', login_path %>
+<% end %>
+
+<br>
+
+<% @orgs.each do |org| %>
+  <br>
+  <%= link_to org.login %>
+<% end %>
