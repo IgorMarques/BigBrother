@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
 
   get '/organizations', to: 'organizations#index'
+
+  get '/organizations/:id/pull_requests', to: 'organizations#pull_requests', as: :pull_requests_for_org
 end

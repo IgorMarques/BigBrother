@@ -6,5 +6,5 @@
 
 <% @orgs.each do |org| %>
   <br>
-  <%= org.login %>
+  <%= link_to org.login, pull_requests_for_org_path(org.login) %>
 <% end %>
