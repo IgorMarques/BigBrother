@@ -5,13 +5,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.new(auth_hash)
-
-    if @user
-      session[:user] = @user
-    end
-
-    redirect_to root_url
+    session[:token] = auth_hash["credentials"]["token"]
+    redirect_to organizations_path
   end
 
   def destroy
@@ -23,5 +18,4 @@ class SessionsController < ApplicationController
   def auth_hash
     request.env['omniauth.auth']
   end
-
 end

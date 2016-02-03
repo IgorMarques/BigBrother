@@ -5,11 +5,18 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :logged_in?
 
+  before_action :set_client
+
   def logged_in?
-    !!current_user #double negation to convert to boolean
+    !!session[:token] #double negation to convert to boolean
   end
 
   def current_user
-    @current_user ||=  session[:user] #memoized
+    @current_user ||=  session[:user]#memoized
+  end
+
+  def set_client
+    Octokit.auto_paginate = true
+    @client = Octokit::Client.new(access_token: session[:token])
   end
 end
