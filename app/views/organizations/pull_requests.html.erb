@@ -1,1 +1,6 @@
 <%= @org %> - Repositories and Pull Requests
+<br>
+<% @repos.each do |repo| %>
+  <br>
+  <%= repo %>
+<% end %>
