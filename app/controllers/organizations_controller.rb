@@ -17,7 +17,7 @@ class OrganizationsController < ApplicationController
 
     #@client.repos is able to get even private repos
 
-    @repos << {name: "Hiroshima", pull_requests: get_pull_requests("Hiroshima")}
+    @repos << {name: "Hiroshima", pull_requests: get_pull_requests("Hiroshima")} if @org == "Codeminer42"
 
     # raise Exception.new @bonus
   end
