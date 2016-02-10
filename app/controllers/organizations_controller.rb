@@ -7,19 +7,12 @@ class OrganizationsController < ApplicationController
   def pull_requests
     @org = params[:id]
 
-    # THIS IS ONLY GETTING PUBLIC REPOS
-    @repos = @client.repos(@org).map do |r|
+    @repos = @client.org_repos(@org).map do |r|
       {
         name: r[:name],
         pull_requests: get_pull_requests( r[:name])
       }
     end
-
-    #@client.repos is able to get even private repos
-
-    @repos << {name: "Hiroshima", pull_requests: get_pull_requests("Hiroshima")} if @org == "Codeminer42"
-
-    # raise Exception.new @bonus
   end
 
   private

@@ -2,6 +2,8 @@
   <%= @org %> - Repositories and Pull Requests
 </h1>
 
+<%= link_to "Back to orgs", organizations_path %>
+
 <br>
 <% @repos.each do |repo| %>
   <br>
@@ -10,8 +12,18 @@
     <%= repo[:name] %>
   </strong>
 
+  <br>
+
   <% repo[:pull_requests].each do |pr| %>
-    <br> <%= link_to "#{pr[:number]} - #{pr[:title]}", pr[:html_url] %>
+    <%= link_to "#{pr[:number]} - #{pr[:title]}", pr[:html_url] %>
+    <br>
   <% end %>
+
+  <% if repo[:pull_requests].blank? %>
+    <p>
+      No PRs here!
+    </p>
+  <% end %>
+
 
 <% end %>
