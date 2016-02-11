@@ -1,5 +1,22 @@
-<h1>Welcome to Big Brother</h1>
+<section class="view-home">
+  <div class="ui center aligned three column centered grid container">
+    <div class="row">
+      <div class="ui stacked segment column">
 
-To check all Pull Requests from all your organizations or repositories...
+        <h1>Welcome to Big Brother</h1>
 
-<%= link_to 'Log In with Github', login_path %>
+        <p>
+          To check all Pull Requests from all your organizations or repositories,
+          please login with Github.
+        </p>
+
+        <%= link_to login_path, class: 'fluid ui primary labeled icon button' do %>
+          <i class="github icon"></i>
+          Login with Github
+        <% end %>
+
+      </div>
+    </div>
+    <small>Copyright © <%= Time.now.year %></small>
+  </div>
+</section>
