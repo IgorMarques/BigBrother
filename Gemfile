@@ -48,6 +48,7 @@ end
 gem "octokit", "~> 4.0"
 gem 'omniauth'
 gem 'omniauth-github'
+gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 
 group :production do
   gem 'pg'
