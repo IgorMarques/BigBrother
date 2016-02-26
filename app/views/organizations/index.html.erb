@@ -1,10 +1,26 @@
-<% if logged_in? %>
-  <%= link_to 'Log Out', logout_path %>
-<% end %>
+<%= render 'shared/logout' %>
 
 <br>
 
-<% @orgs.each do |org| %>
-  <br>
-  <%= link_to org.login, pull_requests_for_org_path(org.login) %>
-<% end %>
+<h1>Your Organizations</h1>
+
+<p>
+  Choose the org you want to check all Pull Requests
+</p>
+
+<div class="row">
+  <% @orgs.each do |org| %>
+    <%= link_to pull_requests_for_org_path(org.login)  do %>
+      <div class="col-md-2">
+        <div class="panel panel-default text-center">
+          <div class="panel-body">
+            <div class="text-muted">
+              <%= icon('github-alt fa-5x') %> <br>
+            </div>
+            <%= org.login  %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
