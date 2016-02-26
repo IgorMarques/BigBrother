@@ -2,28 +2,36 @@
   <%= @org %> - Repositories and Pull Requests
 </h1>
 
-<%= link_to "Back to orgs", organizations_path %>
-
-<br>
-<% @repos.each do |repo| %>
-  <br>
-  <br>
-  <strong>
-    <%= repo[:name] %>
-  </strong>
-
-  <br>
-
-  <% repo[:pull_requests].each do |pr| %>
-    <%= link_to "#{pr[:number]} - #{pr[:title]}", pr[:html_url] %>
-    <br>
-  <% end %>
-
-  <% if repo[:pull_requests].blank? %>
-    <p>
-      No PRs here!
-    </p>
-  <% end %>
-
-
+<%= link_to organizations_path do %>
+  <div class="btn btn-default">
+    <%= icon('arrow-left fa-fw') %> Back to orgs
+  </div>
 <% end %>
+
+<hr>
+
+<div class="row">
+  <% @repos.each do |repo| %>
+    <div class="col-md-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <strong>
+            <%= repo[:name] %>
+          </strong>
+        </div>
+        <div class="panel-body">
+          <% repo[:pull_requests].each do |pr| %>
+            <%= link_to "#{pr[:number]} - #{pr[:title]}", pr[:html_url] %>
+            <br>
+          <% end %>
+
+          <% if repo[:pull_requests].blank? %>
+            <p>
+              No PRs here!
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
