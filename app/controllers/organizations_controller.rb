@@ -25,6 +25,8 @@ class OrganizationsController < ApplicationController
   end
 
   def build_pr(pull_request)
-    pull_request.to_hash.slice(:number, :html_url, :title)
+    pull_request = pull_request.to_hash.slice(:number, :html_url, :title, :user)
+    pull_request[:user] = pull_request[:user].to_hash
+    pull_request
   end
 end

@@ -1,6 +1,16 @@
 <h1>
-  <%= @org %> - Repositories and Pull Requests
+  <%= @org %> - Pull Requests
 </h1>
+
+<div class="pull-right">
+  <% if params[:all] == "true" %>
+    <%= link_to 'see only projects with PRs opened', pull_requests_for_org_path(@org)  %>
+  <% else %>
+    <%= link_to 'see all projects', pull_requests_for_org_path(@org, all: true) %>
+  <% end %>
+</div>
+
+<br>
 
 <%= link_to organizations_path do %>
   <div class="btn btn-default">
@@ -12,26 +22,29 @@
 
 <div class="row">
   <% @repos.each do |repo| %>
-    <div class="col-md-3">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <strong>
-            <%= repo[:name] %>
-          </strong>
-        </div>
-        <div class="panel-body">
-          <% repo[:pull_requests].each do |pr| %>
-            <%= link_to "#{pr[:number]} - #{pr[:title]}", pr[:html_url] %>
-            <br>
-          <% end %>
+    <% if repo[:pull_requests].present? || params[:all] == "true" %>
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <strong>
+              <%= repo[:name] %>
+            </strong>
+          </div>
+          <div class="panel-body">
+            <div class="list-group">
+              <% repo[:pull_requests].each do |pr| %>
+                <%= render 'pull_request', pr: pr %>
+              <% end %>
+            </div>
 
-          <% if repo[:pull_requests].blank? %>
-            <p>
-              No PRs here!
-            </p>
-          <% end %>
+            <% if repo[:pull_requests].blank? %>
+              <p>
+                No PRs here!
+              </p>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 </div>
