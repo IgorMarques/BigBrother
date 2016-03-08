@@ -1,4 +1,4 @@
-<%= link_to pr[:html_url], class: "list-group-item"  do %>
+<%= link_to pr[:html_url], class: "list-group-item", target: '_blank'  do %>
   <div class="row">
     <div class="col-xs-10">
       <%= "##{pr[:number]} - #{pr[:title]}" %>
