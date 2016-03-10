@@ -21,30 +21,7 @@
 <hr>
 
 <div class="row">
-  <% @repos.each do |repo| %>
-    <% if repo[:pull_requests].present? || params[:all] == "true" %>
-      <div class="col-md-6">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <strong>
-              <%= repo[:name] %>
-            </strong>
-          </div>
-          <div class="panel-body">
-            <div class="list-group">
-              <% repo[:pull_requests].each do |pr| %>
-                <%= render 'pull_request', pr: pr %>
-              <% end %>
-            </div>
-
-            <% if repo[:pull_requests].blank? %>
-              <p>
-                No PRs here!
-              </p>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    <% end %>
+  <% @repos.each do |repository| %>
+    <%= render 'repo', repo: repository %>
   <% end %>
 </div>
